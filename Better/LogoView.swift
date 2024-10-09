@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct LogoView: View {
+    
+    
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         
         ZStack {
-            LinearGradient(colors: [
-                Color("MyWhite"),  // pure white
-                Color("MyBlack").opacity(0.3)  // pure black
-                ],
-                startPoint: .top,
-                endPoint: .bottom)
-            //.padding(.top, 500)
+            Color("MyWhite")
             .ignoresSafeArea()
             
             VStack {
@@ -25,20 +23,20 @@ struct LogoView: View {
                 Spacer()
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.white)
-                        .stroke(Color.black, lineWidth:2)
-                        .shadow(color: Color.black.opacity(0.5), radius: 10, x: 5, y: 5)
+                        .fill(Color("MyWhite"))
+                        .stroke(Color("MyBlack"), lineWidth:2)
+                        .shadow(color: Color("MyBlack").opacity(0.5), radius: 10, x: 5, y: 5)
                         .frame(width: 150, height: 150)
                     Text("B")
                         .font(.system(size:128))
                         .fontWeight(.bold)
-                        .foregroundColor(Color.black)
+                        .foregroundColor(Color("MyBlack"))
                         .multilineTextAlignment(.center)
                 }
                 Text("Better")
                     .font(.system(size:96))
                     .fontWeight(.bold)
-                    .shadow(color: Color.black.opacity(0.5), radius: 10, x: 5, y: 5)
+                    .shadow(color: Color("MyBlack").opacity(0.5), radius: 10, x: 5, y: 5)
                 HStack {
                     Text("simple /")
                     Text("better")
@@ -46,7 +44,7 @@ struct LogoView: View {
                     Text("/ efficient")
                 }
                 .font(.system(size:12))
-                .shadow(color: Color.black.opacity(0.5), radius: 10, x: 5, y: 5)
+                .shadow(color: Color("MyBlack").opacity(0.5), radius: 10, x: 5, y: 5)
                     
                 
                 Spacer()
@@ -55,9 +53,11 @@ struct LogoView: View {
                 
             }
         }
+        .colorScheme(.light)
         
     }
 }
+    
 
 #Preview {
     LogoView()
