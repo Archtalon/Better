@@ -14,7 +14,6 @@ struct OnboardingView: View {
             )
             .ignoresSafeArea()
             
-            ScrollView {
                 VStack {
                     // Your scrollable content
                     Text("""
@@ -24,17 +23,22 @@ struct OnboardingView: View {
 
                         Some of us may need to be better professionals, better artists, better athletes, better friends and partners or a combination of all of the above. Let’s explore together through a series of questions, how much time is available on each one of your days, what are your targets and what we can achieve with it.
                         
-                        Through the advice of experts in each field, we will set what your current level is and create step to step time framed guidelines to advance on your chosen areas.
-
-                        On each one of your chosen target areas, we will set realistic milestones, end targets and steps to achieve them.
-
-                        In the end, you will have a complete timeline for your next weeks, months etc.
                         """)
                     .foregroundColor(Color("MyBlack"))
+                    .padding(.horizontal, 20)
                     .padding(.top, 90)
+                    
+                    Text("""
+                        Through the advice of experts in each field, we will set what your current level is and create step to step time framed guidelines to advance on your chosen areas.
+                        
+                        On each one of your chosen target areas, we will set realistic milestones, end targets and steps to achieve them.
+                        
+                        In the end, you will have a complete timeline for your next weeks, months etc.
+                        """)
+                    .foregroundColor(Color("MyWhite"))
                     .padding(.horizontal, 20)
                 }
-            }
+            
 
             // Anchored logo at the top
             VStack {
