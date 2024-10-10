@@ -15,8 +15,16 @@ struct LogoView: View {
     var body: some View {
         
         ZStack {
-            Color("MyWhite")
-            .ignoresSafeArea()
+            LinearGradient(
+                        gradient: Gradient(stops: [
+                            Gradient.Stop(color:Color("MyWhite"), location: 0.0),   // Start color
+                            Gradient.Stop(color:Color("MyWhite"), location: 0.5),  // Middle color stop
+                            Gradient.Stop(color:Color("MyBlack"), location: 1.0)  // End color 
+                        ]),
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                    .ignoresSafeArea()
             
             VStack {
                 Spacer()
