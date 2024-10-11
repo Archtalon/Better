@@ -55,10 +55,9 @@
 		BBB9E00E2CB5CD64004E4CF7 /* Better */ = {
 			isa = PBXGroup;
 			children = (
+				BBF023FB2CB90E57009540A8 /* Views */,
 				BBF023F82CB90C9A009540A8 /* Helpers */,
 				BBB9E00F2CB5CD64004E4CF7 /* BetterApp.swift */,
-				BBB9E0112CB5CD64004E4CF7 /* LogoView.swift */,
-				BB58AA6F2CB80D590003F48E /* OnboardingView.swift */,
 				BBB9E0132CB5CD66004E4CF7 /* Assets.xcassets */,
 				BBB9E0152CB5CD66004E4CF7 /* Preview Content */,
 			);
@@ -79,6 +78,15 @@
 				BBF023F92CB90CC4009540A8 /* TopBarView.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		BBF023FB2CB90E57009540A8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BBB9E0112CB5CD64004E4CF7 /* LogoView.swift */,
+				BB58AA6F2CB80D590003F48E /* OnboardingView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
