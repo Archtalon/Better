@@ -13,7 +13,7 @@ struct TopBarView: View {
         VStack {
             ZStack {
                 Rectangle()
-                    .stroke(Color("MyBlack"), lineWidth: /*@START_MENU_TOKEN@*/4.0/*@END_MENU_TOKEN@*/)
+                    .stroke(Color("MyWhite"), lineWidth: /*@START_MENU_TOKEN@*/4.0/*@END_MENU_TOKEN@*/)
                     .fill(Color("MyWhite"))
                     .frame(width: .infinity, height: 120)
                     .ignoresSafeArea()
@@ -24,7 +24,6 @@ struct TopBarView: View {
                     .shadow(color: Color("MyBlack").opacity(0.5), radius: 10, x: 5, y: 5)
                     .frame(width: 30, height: 30)
                     .padding(.bottom, 150) // Adjust top padding to anchor the logo near the top
-                
                 Text("B")
                     .font(.system(size: 12))
                     .fontWeight(.bold)
