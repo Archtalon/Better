@@ -12,6 +12,7 @@
 		BBB9E0122CB5CD64004E4CF7 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9E0112CB5CD64004E4CF7 /* LogoView.swift */; };
 		BBB9E0142CB5CD66004E4CF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB9E0132CB5CD66004E4CF7 /* Assets.xcassets */; };
 		BBB9E0172CB5CD66004E4CF7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB9E0162CB5CD66004E4CF7 /* Preview Assets.xcassets */; };
+		BBF023FA2CB90CC4009540A8 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF023F92CB90CC4009540A8 /* TopBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		BBB9E0112CB5CD64004E4CF7 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		BBB9E0132CB5CD66004E4CF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BBB9E0162CB5CD66004E4CF7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BBF023F92CB90CC4009540A8 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		BBB9E00E2CB5CD64004E4CF7 /* Better */ = {
 			isa = PBXGroup;
 			children = (
+				BBF023F82CB90C9A009540A8 /* Helpers */,
 				BBB9E00F2CB5CD64004E4CF7 /* BetterApp.swift */,
 				BBB9E0112CB5CD64004E4CF7 /* LogoView.swift */,
 				BB58AA6F2CB80D590003F48E /* OnboardingView.swift */,
@@ -68,6 +71,14 @@
 				BBB9E0162CB5CD66004E4CF7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BBF023F82CB90C9A009540A8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BBF023F92CB90CC4009540A8 /* TopBarView.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +153,7 @@
 			files = (
 				BB58AA702CB80D590003F48E /* OnboardingView.swift in Sources */,
 				BBB9E0122CB5CD64004E4CF7 /* LogoView.swift in Sources */,
+				BBF023FA2CB90CC4009540A8 /* TopBarView.swift in Sources */,
 				BBB9E0102CB5CD64004E4CF7 /* BetterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
