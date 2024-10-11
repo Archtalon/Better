@@ -59,6 +59,7 @@ struct UserInputView: View {
                 Spacer()
                 
             }
+            .navigationBarBackButtonHidden(true)
             
         }
     }
