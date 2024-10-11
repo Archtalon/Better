@@ -36,7 +36,6 @@ struct OnboardingView: View {
                     }
                 }
                 TopBarView()
-                
                 // NavigationLink to trigger the navigation when tapping anywhere
                 NavigationLink(destination: UserInputView()) {
                     Color.clear // Invisible full-page button
