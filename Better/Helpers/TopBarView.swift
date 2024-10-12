@@ -25,6 +25,7 @@ struct TopBarView: View {
                             .foregroundColor(Color("MyBlack"))
                     )
                     .shadow(color: Color("MyBlack").opacity(0.5), radius: 10, x: 5, y: 5)
+                    .padding(.top, 20)
             }
         }
         .frame(maxWidth: .infinity, alignment: .top)
