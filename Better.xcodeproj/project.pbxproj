@@ -8,23 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		BB58AA702CB80D590003F48E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58AA6F2CB80D590003F48E /* OnboardingView.swift */; };
+		BBB6D8E82CBAD237008BDE9E /* TimeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB6D8E72CBAD237008BDE9E /* TimeInputView.swift */; };
 		BBB9E0102CB5CD64004E4CF7 /* BetterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9E00F2CB5CD64004E4CF7 /* BetterApp.swift */; };
 		BBB9E0122CB5CD64004E4CF7 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9E0112CB5CD64004E4CF7 /* LogoView.swift */; };
 		BBB9E0142CB5CD66004E4CF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB9E0132CB5CD66004E4CF7 /* Assets.xcassets */; };
 		BBB9E0172CB5CD66004E4CF7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB9E0162CB5CD66004E4CF7 /* Preview Assets.xcassets */; };
 		BBF023FA2CB90CC4009540A8 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF023F92CB90CC4009540A8 /* TopBarView.swift */; };
-		BBF023FD2CB96A03009540A8 /* UserInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF023FC2CB96A03009540A8 /* UserInputView.swift */; };
+		BBF023FD2CB96A03009540A8 /* BasicInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF023FC2CB96A03009540A8 /* BasicInputView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BB58AA6F2CB80D590003F48E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		BBB6D8E72CBAD237008BDE9E /* TimeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInputView.swift; sourceTree = "<group>"; };
 		BBB9E00C2CB5CD64004E4CF7 /* Better.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Better.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB9E00F2CB5CD64004E4CF7 /* BetterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterApp.swift; sourceTree = "<group>"; };
 		BBB9E0112CB5CD64004E4CF7 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		BBB9E0132CB5CD66004E4CF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BBB9E0162CB5CD66004E4CF7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BBF023F92CB90CC4009540A8 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
-		BBF023FC2CB96A03009540A8 /* UserInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputView.swift; sourceTree = "<group>"; };
+		BBF023FC2CB96A03009540A8 /* BasicInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInputView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +89,8 @@
 			children = (
 				BBB9E0112CB5CD64004E4CF7 /* LogoView.swift */,
 				BB58AA6F2CB80D590003F48E /* OnboardingView.swift */,
-				BBF023FC2CB96A03009540A8 /* UserInputView.swift */,
+				BBF023FC2CB96A03009540A8 /* BasicInputView.swift */,
+				BBB6D8E72CBAD237008BDE9E /* TimeInputView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -162,8 +165,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBB6D8E82CBAD237008BDE9E /* TimeInputView.swift in Sources */,
 				BB58AA702CB80D590003F48E /* OnboardingView.swift in Sources */,
-				BBF023FD2CB96A03009540A8 /* UserInputView.swift in Sources */,
+				BBF023FD2CB96A03009540A8 /* BasicInputView.swift in Sources */,
 				BBB9E0122CB5CD64004E4CF7 /* LogoView.swift in Sources */,
 				BBF023FA2CB90CC4009540A8 /* TopBarView.swift in Sources */,
 				BBB9E0102CB5CD64004E4CF7 /* BetterApp.swift in Sources */,

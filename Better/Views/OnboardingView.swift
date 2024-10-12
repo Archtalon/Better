@@ -46,7 +46,7 @@ struct OnboardingView: View {
                 .scrollIndicators(.hidden) // Hides the scroll indicators
                 TopBarView()
                 // NavigationLink to trigger the navigation when tapping anywhere
-                NavigationLink(destination: UserInputView()) {
+                NavigationLink(destination: BasicInputView()) {
                     Color.clear // Invisible full-page button
                 }
                 .ignoresSafeArea()

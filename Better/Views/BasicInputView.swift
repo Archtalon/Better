@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct UserInputView: View {
+struct BasicInputView: View {
     @State private var currentQuestion = "What are your current goals?"
     @State private var possibleAnswers = ["Improve physical performance.", "Improve in a field of study.", "Improve in both.", "I don't really know."]
     
@@ -89,29 +89,30 @@ struct UserInputView: View {
                 Spacer()
                 
                 // Next Button
-                Button(action: {
-                    flashNextButton = true
-                    if let selectedIndex = selectedAnswer {
-                        nextButtonBorderColor = colorForButton(index: selectedIndex) // Immediately set the border color
+                    Button(action: {
+                        flashNextButton = true
+                        if let selectedIndex = selectedAnswer {
+                            nextButtonBorderColor = colorForButton(index: selectedIndex) // Immediately set the border color
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            flashNextButton = false
+                        }
+                    }) {
+                        NavigationLink(destination: TimeInputView()) {
+                            Text("Next")
+                                .fontWeight(.bold)
+                                .foregroundColor(selectedAnswer != nil ? colorForButton(index: selectedAnswer!) : Color("MyBlack")) // Retain color of selected answer
+                                .padding(10) // Adjust padding to make the button smaller
+                                .background(Color("MyWhite")) // Fixed background color
+                                .cornerRadius(10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(flashNextButton ? (selectedAnswer != nil ? colorForButton(index: selectedAnswer!) : Color.clear) : nextButtonBorderColor, lineWidth: 2)
+                                ) // Border flash effect
+                        }
                     }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        flashNextButton = false
-                        // Handle navigation or action for the Next button here...
-                    }
-                }) {
-                    Text("Next")
-                        .fontWeight(.bold)
-                        .foregroundColor(selectedAnswer != nil ? colorForButton(index: selectedAnswer!) : Color("MyBlack")) // Retain color of selected answer
-                        .padding(10) // Adjust padding to make the button smaller
-                        .background(Color("MyWhite")) // Fixed background color
-                        .cornerRadius(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(flashNextButton ? (selectedAnswer != nil ? colorForButton(index: selectedAnswer!) : Color.clear) : nextButtonBorderColor, lineWidth: 2)
-                        ) // Border flash effect
-                }
-                .padding(.horizontal)
-                .padding(.bottom) // Add bottom padding to separate from logos
+                    .padding(.horizontal)
+                    .padding(.bottom) // Add bottom padding to separate from logos
             }
             .navigationBarBackButtonHidden(true)
             .padding()
@@ -173,5 +174,5 @@ struct UserInputView: View {
 }
 
 #Preview {
-    UserInputView()
+    BasicInputView()
 }
