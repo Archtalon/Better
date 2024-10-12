@@ -1,20 +1,9 @@
-//
-//  UserInputView.swift
-//  Better
-//
-//  Created by Nick Ververis on 11/10/24.
-//
-
 import SwiftUI
 
 struct UserInputView: View {
-    // State variables to track if the boxes are checked
-       @State private var isAnswer1Checked = false
-       @State private var isAnswer2Checked = false
-       @State private var isAnswer3Checked = false
-       @State private var isAnswer4Checked = false
-       @State private var isAnswer5Checked = false
-       @State private var isAnswer6Checked = false
+    @State private var currentQuestion = "What are your current goals?"
+    @State private var possibleAnswers = ["Improve pshysically.", "Improve mentally.", "I don't really know."]
+    
     var body: some View {
         
         ZStack(alignment: .top) {
@@ -28,99 +17,102 @@ struct UserInputView: View {
                 endPoint: .bottomTrailing
             )
             .ignoresSafeArea()
+            
+            TopBarView()
             VStack {
-                TopBarView()
                 Spacer()
-                // Question
-                ZStack {
-                    Rectangle()
-                        .stroke(Color("MyBlack"), lineWidth: 2)
-                        .fill(Color("MyWhite"))
-                        .shadow(color: Color("MyBlack").opacity(0.5), radius: 10, x: 5, y: 5)
-                        .frame(width: 350, height: 200)
-                   
-                    VStack {
-                        Text("What are your goals?")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(Color("MyBlack"))
-                            .multilineTextAlignment(.leading)
-                            .padding(.bottom, 10)
-                        // Answer options with checkboxes (Toggles)
-                        Toggle("Become better at time management", isOn: $isAnswer1Checked)
-                            .foregroundColor(Color("MyBlack"))
-                            .toggleStyle(CheckboxToggleStyle(tickColor: .green))
-                        
-                        Toggle("Improve physical fitness", isOn: $isAnswer2Checked)
-                            .toggleStyle(CheckboxToggleStyle(tickColor: .green))
-                            .foregroundColor(Color("MyBlack"))
-                        
-                        Toggle("Enhance artistic skills", isOn: $isAnswer3Checked)
-                            .foregroundColor(Color("MyBlack"))
-                            .toggleStyle(CheckboxToggleStyle(tickColor: .green))
-                    }
-                }
+                Spacer()
+                Spacer()
+                // Display the current question
+                Text(currentQuestion)
+                    .fontWeight(.bold)
+                    .foregroundColor(/*@START_MENU_TOKEN@*/Color("MyBlack")/*@END_MENU_TOKEN@*/)
+                    .padding()
                 
-                ZStack {
-                    Rectangle()
-                        .stroke(Color("MyBlack"), lineWidth: 2)
-                        .fill(Color("MyWhite"))
-                        .shadow(color: Color("MyBlack").opacity(0.5), radius: 10, x: 5, y: 5)
-                        .frame(width: 350, height: 200)
-                   
-                    VStack {
-                        Text("How much time do you have?")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(Color("MyBlack"))
-                            .multilineTextAlignment(.leading)
-                            .padding(.bottom, 10)
-                        // Answer options with checkboxes (Toggles)
-                        Toggle("All day long", isOn: $isAnswer4Checked)
-                            .foregroundColor(Color("MyBlack"))
-                            .toggleStyle(CheckboxToggleStyle(tickColor: .green))
-                        
-                        Toggle("2-4 hours pes day", isOn: $isAnswer5Checked)
-                            .toggleStyle(CheckboxToggleStyle(tickColor: .green))
-                            .foregroundColor(Color("MyBlack"))
-                        
-                        Toggle("1 hour per day", isOn: $isAnswer6Checked)
-                            .foregroundColor(Color("MyBlack"))
-                            .toggleStyle(CheckboxToggleStyle(tickColor: .green))
-                    }
-                }
                 
+                // Display possible answers inside a RoundedRectangle
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.gray.opacity(0.2))
+                    .frame(height: 200)
+                    .overlay(
+                        VStack {
+                            Button(action: {
+                                handleAnswerSelection(answer: "A")
+                            }) {
+                                Text(possibleAnswers[0])
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.myBlack)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.myWhite)
+                                    .cornerRadius(10)
+                            }
+                            .padding(.horizontal)
+                            
+                            Button(action: {
+                                handleAnswerSelection(answer: "B")
+                            }) {
+                                Text(possibleAnswers[1])
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.myBlack)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.myWhite)
+                                    .cornerRadius(10)
+                            }
+                            .padding(.horizontal)
+                            
+                            Button(action: {
+                                handleAnswerSelection(answer: "C")
+                            }) {
+                                Text(possibleAnswers[2])
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.myBlack)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.myWhite)
+                                    .cornerRadius(10)
+                            }
+                            .padding(.horizontal)
+                        }
+                            .padding()
+                    )
                 Spacer()
                 Spacer()
                 Spacer()
                 Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                Spacer()
-                
             }
             .navigationBarBackButtonHidden(true)
-            
+            .padding()
+            .navigationTitle("Questionnaire")
         }
     }
     
-}
-
-// Custom Checkbox Toggle Style with customizable tick color
-struct CheckboxToggleStyle: ToggleStyle {
-    var tickColor: Color // Custom color for the tick
-
-    func makeBody(configuration: Configuration) -> some View {
-        HStack {
-            Image(systemName: configuration.isOn ? "checkmark.square.fill" : "square")
-                .foregroundColor(configuration.isOn ? tickColor : .gray) // Apply custom tick color
-                .onTapGesture {
-                    configuration.isOn.toggle()
-                }
-            configuration.label
+    // Function to handle answer selection and update the next question
+    func handleAnswerSelection(answer: String) {
+        switch currentQuestion {
+        case "What are your current goals?":
+            if answer == "A" {
+                currentQuestion = "Why do you like Red?"
+                possibleAnswers = ["It's vibrant", "It's bold", "It's warm"]
+            } else if answer == "B" {
+                currentQuestion = "Why do you like Green?"
+                possibleAnswers = ["It's calming", "It's fresh", "It's natural"]
+            } else {
+                currentQuestion = "Why do you like Blue?"
+                possibleAnswers = ["It's peaceful", "It's cool", "It's relaxing"]
+            }
+            
+        case "Why do you like Red?", "Why do you like Green?", "Why do you like Blue?":
+            currentQuestion = "What's your favorite season?"
+            possibleAnswers = ["Spring", "Summer", "Winter"]
+            
+        case "What's your favorite season?":
+            currentQuestion = "Thank you for completing the quiz!"
+            possibleAnswers = []
+            
+        default:
+            break
         }
     }
 }
