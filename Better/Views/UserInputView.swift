@@ -7,6 +7,7 @@ struct UserInputView: View {
     @State private var selectedAnswer: Int? = nil // Track the selected answer
     @State private var flashRectangle: Bool = false // Control flashing effect
     @State private var flashNextButton: Bool = false // Control flashing effect for Next button
+    @State private var nextButtonBorderColor: Color = Color("MyBlack") // Border color for Next button
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -90,6 +91,9 @@ struct UserInputView: View {
                 // Next Button
                 Button(action: {
                     flashNextButton = true
+                    if let selectedIndex = selectedAnswer {
+                        nextButtonBorderColor = colorForButton(index: selectedIndex) // Set the border color to the selected answer color
+                    }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         flashNextButton = false
                         // Handle navigation or action for the Next button here...
@@ -103,7 +107,7 @@ struct UserInputView: View {
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(flashNextButton ? (selectedAnswer != nil ? colorForButton(index: selectedAnswer!) : Color.clear) : Color.clear, lineWidth: 2)
+                                .stroke(flashNextButton ? (selectedAnswer != nil ? colorForButton(index: selectedAnswer!) : Color.clear) : nextButtonBorderColor, lineWidth: 2)
                         ) // Border flash effect
                 }
                 .padding(.horizontal)
@@ -123,6 +127,7 @@ struct UserInputView: View {
             flashNextButton = true // Trigger flash for Next button as well
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 flashNextButton = false
+                nextButtonBorderColor = colorForButton(index: selectedAnswer!) // Set border color to the selected answer color
             }
         }
     }
