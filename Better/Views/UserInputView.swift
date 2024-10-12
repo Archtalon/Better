@@ -111,9 +111,15 @@ struct UserInputView: View {
         }
     }
 
-    // Color function for logos (same logic as buttons, persists color after flashing)
+    // Color function for logos (same logic as buttons, persist pure color after flashing)
     func colorForLogo(index: Int) -> Color {
-        return selectedAnswer == index ? colorForButton(index: index) : Color("MyBlack") // MyBlack by default
+        if flashRectangle && selectedAnswer == index {
+            return colorForButton(index: index).opacity(0.5) // Flashing effect with opacity
+        } else if selectedAnswer == index {
+            return colorForButton(index: index) // After flash, set to full color
+        } else {
+            return Color("MyBlack") // Default to MyBlack
+        }
     }
 
     // Rectangle with flashing effect for logos
@@ -125,7 +131,7 @@ struct UserInputView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .padding(30)
-                    .foregroundColor(flashing ? logoColor.opacity(0.5) : logoColor) // Flashing color on logo; then persist
+                    .foregroundColor(logoColor) // Flashing logo color, then persist full color
             )
             .padding(5)
             .frame(height: 100) // Adjust to fit the layout
