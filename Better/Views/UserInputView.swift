@@ -84,7 +84,6 @@ struct UserInputView: View {
             }
             .navigationBarBackButtonHidden(true)
             .padding()
-            .navigationTitle("Questionnaire")
         }
     }
     
