@@ -30,6 +30,7 @@ struct OnboardingView: View {
                         
                         In the end, you will have a complete timeline for your next weeks, months etc.
                         """)
+                        .fontWeight(.bold)
                         .foregroundColor(Color("MyBlack"))
                         .padding(.top, 90)
                         .padding(.horizontal, 20)
