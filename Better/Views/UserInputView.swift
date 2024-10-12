@@ -4,7 +4,7 @@ struct UserInputView: View {
     @State private var currentQuestion = "What are your current goals?"
     @State private var possibleAnswers = ["Improve physical performance.", "Improve in a field of study.", "Improve in both.", "I don't really know."]
     
-    @State private var selectedAnswer: Int? = nil // Track the selected answer for flashing effect
+    @State private var selectedAnswer: Int? = nil // Track the selected answer
     @State private var flashRectangle: Bool = false // Control flashing effect
 
     var body: some View {
@@ -45,15 +45,15 @@ struct UserInputView: View {
                                 }) {
                                     Text(possibleAnswers[index])
                                         .fontWeight(.bold)
-                                        .foregroundColor(selectedAnswer == index && flashRectangle ? colorForButton(index: index) : Color("MyBlack")) // Flashing color on selection
+                                        .foregroundColor(selectedAnswer == index ? colorForButton(index: index) : Color("MyBlack")) // Set color after selection
                                         .padding()
                                         .frame(maxWidth: .infinity)
                                         .background(Color("MyWhite")) // Fixed background color
                                         .cornerRadius(10)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 10)
-                                                .stroke(selectedAnswer == index && flashRectangle ? colorForButton(index: index) : Color.clear, lineWidth: 2)
-                                        ) // Flash border on selection
+                                                .stroke(selectedAnswer == index ? colorForButton(index: index) : Color.clear, lineWidth: 2)
+                                        ) // Border flash effect
                                 }
                                 .padding(.horizontal)
                             }
@@ -70,15 +70,15 @@ struct UserInputView: View {
                             VStack(spacing: 0) {
                                 HStack(spacing: 0) {
                                     // Top left: physical performance logo
-                                    logoRectangle(backgroundColor: Color("MyWhite"), logoColor: .red, logoName: "figure.run", flashing: selectedAnswer == 0)
+                                    logoRectangle(backgroundColor: Color("MyWhite"), logoColor: colorForLogo(index: 0), logoName: "figure.run", flashing: selectedAnswer == 0)
                                     // Top right: studying logo
-                                    logoRectangle(backgroundColor: Color("MyWhite"), logoColor: .green, logoName: "book", flashing: selectedAnswer == 1)
+                                    logoRectangle(backgroundColor: Color("MyWhite"), logoColor: colorForLogo(index: 1), logoName: "book", flashing: selectedAnswer == 1)
                                 }
                                 HStack(spacing: 0) {
                                     // Bottom left: combination logo
-                                    logoRectangle(backgroundColor: Color("MyWhite"), logoColor: .orange, logoName: "wand.and.stars", flashing: selectedAnswer == 2)
+                                    logoRectangle(backgroundColor: Color("MyWhite"), logoColor: colorForLogo(index: 2), logoName: "wand.and.stars", flashing: selectedAnswer == 2)
                                     // Bottom right: question mark logo
-                                    logoRectangle(backgroundColor: Color("MyWhite"), logoColor: .brown, logoName: "questionmark", flashing: selectedAnswer == 3)
+                                    logoRectangle(backgroundColor: Color("MyWhite"), logoColor: colorForLogo(index: 3), logoName: "questionmark", flashing: selectedAnswer == 3)
                                 }
                             }
                         }
@@ -111,6 +111,11 @@ struct UserInputView: View {
         }
     }
 
+    // Color function for logos (same logic as buttons, persists color after flashing)
+    func colorForLogo(index: Int) -> Color {
+        return selectedAnswer == index ? colorForButton(index: index) : Color("MyBlack") // MyBlack by default
+    }
+
     // Rectangle with flashing effect for logos
     func logoRectangle(backgroundColor: Color, logoColor: Color, logoName: String, flashing: Bool) -> some View {
         RoundedRectangle(cornerRadius: 10)
@@ -120,7 +125,7 @@ struct UserInputView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .padding(30)
-                    .foregroundColor(flashing ? logoColor.opacity(0.5) : Color("MyBlack")) // Flashing color on logo; otherwise MyBlack
+                    .foregroundColor(flashing ? logoColor.opacity(0.5) : logoColor) // Flashing color on logo; then persist
             )
             .padding(5)
             .frame(height: 100) // Adjust to fit the layout
