@@ -97,14 +97,13 @@ struct UserInputView: View {
                 }) {
                     Text("Next")
                         .fontWeight(.bold)
-                        .foregroundColor(flashNextButton ? colorForButton(index: selectedAnswer ?? 0) : Color("MyBlack")) // Change color based on flashing state
-                        .padding()
-                        .frame(maxWidth: .infinity)
+                        .foregroundColor(selectedAnswer != nil ? colorForButton(index: selectedAnswer!) : Color("MyBlack")) // Retain color of selected answer
+                        .padding(10) // Adjust padding to make the button smaller
                         .background(Color("MyWhite")) // Fixed background color
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(flashNextButton ? colorForButton(index: selectedAnswer ?? 0) : Color.clear, lineWidth: 2)
+                                .stroke(flashNextButton ? (selectedAnswer != nil ? colorForButton(index: selectedAnswer!) : Color.clear) : Color.clear, lineWidth: 2)
                         ) // Border flash effect
                 }
                 .padding(.horizontal)
