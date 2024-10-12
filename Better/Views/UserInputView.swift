@@ -30,7 +30,7 @@ struct UserInputView: View {
                 // Display the current question
                 Text(currentQuestion)
                     .fontWeight(.bold)
-                    .foregroundColor(Color("MyBlack"))
+                    .foregroundColor(Color("MyBlack")) // Default text color MyBlack
                     .padding()
 
                 // Display possible answers inside a RoundedRectangle
@@ -45,11 +45,15 @@ struct UserInputView: View {
                                 }) {
                                     Text(possibleAnswers[index])
                                         .fontWeight(.bold)
-                                        .foregroundColor(colorForButton(index: index)) // Text color based on index
+                                        .foregroundColor(selectedAnswer == index && flashRectangle ? colorForButton(index: index) : Color("MyBlack")) // Flashing color on selection
                                         .padding()
                                         .frame(maxWidth: .infinity)
                                         .background(Color("MyWhite")) // Fixed background color
                                         .cornerRadius(10)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(selectedAnswer == index && flashRectangle ? colorForButton(index: index) : Color.clear, lineWidth: 2)
+                                        ) // Flash border on selection
                                 }
                                 .padding(.horizontal)
                             }
@@ -94,7 +98,6 @@ struct UserInputView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             flashRectangle = false
         }
-        // Handle question and answers logic here...
     }
 
     // Color function for the text in buttons
@@ -117,7 +120,7 @@ struct UserInputView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .padding(30)
-                    .foregroundColor(flashing ? logoColor.opacity(0.5) : logoColor) // Flash effect on logo color
+                    .foregroundColor(flashing ? logoColor.opacity(0.5) : Color("MyBlack")) // Flashing color on logo; otherwise MyBlack
             )
             .padding(5)
             .frame(height: 100) // Adjust to fit the layout
