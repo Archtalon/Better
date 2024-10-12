@@ -13,5 +13,6 @@ struct BetterApp: App {
         WindowGroup {
             LogoView()
         }
+        // Check
     }
 }
