@@ -6,6 +6,7 @@ struct UserInputView: View {
     
     @State private var selectedAnswer: Int? = nil // Track the selected answer
     @State private var flashRectangle: Bool = false // Control flashing effect
+    @State private var flashNextButton: Bool = false // Control flashing effect for Next button
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -85,6 +86,29 @@ struct UserInputView: View {
                     )
                 
                 Spacer()
+                
+                // Next Button
+                Button(action: {
+                    flashNextButton = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        flashNextButton = false
+                        // Handle navigation or action for the Next button here...
+                    }
+                }) {
+                    Text("Next")
+                        .fontWeight(.bold)
+                        .foregroundColor(flashNextButton ? colorForButton(index: selectedAnswer ?? 0) : Color("MyBlack")) // Change color based on flashing state
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color("MyWhite")) // Fixed background color
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(flashNextButton ? colorForButton(index: selectedAnswer ?? 0) : Color.clear, lineWidth: 2)
+                        ) // Border flash effect
+                }
+                .padding(.horizontal)
+                .padding(.bottom) // Add bottom padding to separate from logos
             }
             .navigationBarBackButtonHidden(true)
             .padding()
@@ -97,6 +121,10 @@ struct UserInputView: View {
         flashRectangle = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             flashRectangle = false
+            flashNextButton = true // Trigger flash for Next button as well
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                flashNextButton = false
+            }
         }
     }
 
