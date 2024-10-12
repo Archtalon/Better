@@ -31,7 +31,6 @@ struct OnboardingView: View {
                         .padding(.top, 90)
                         .padding(.horizontal, 20)
                         
-                        
                         Text("""
                         Through the advice of experts in each field, we will set what your current level is and create step to step time framed guidelines to advance on your chosen areas.
                         
@@ -44,6 +43,7 @@ struct OnboardingView: View {
                         .padding(.horizontal, 20)
                     }
                 }
+                .scrollIndicators(.hidden) // Hides the scroll indicators
                 TopBarView()
                 // NavigationLink to trigger the navigation when tapping anywhere
                 NavigationLink(destination: UserInputView()) {
