@@ -92,7 +92,7 @@ struct UserInputView: View {
                 Button(action: {
                     flashNextButton = true
                     if let selectedIndex = selectedAnswer {
-                        nextButtonBorderColor = colorForButton(index: selectedIndex) // Set the border color to the selected answer color
+                        nextButtonBorderColor = colorForButton(index: selectedIndex) // Immediately set the border color
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         flashNextButton = false
@@ -122,12 +122,14 @@ struct UserInputView: View {
     func handleAnswerSelection(index: Int) {
         selectedAnswer = index
         flashRectangle = true
+        nextButtonBorderColor = colorForButton(index: index) // Immediately set the border color
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             flashRectangle = false
             flashNextButton = true // Trigger flash for Next button as well
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 flashNextButton = false
-                nextButtonBorderColor = colorForButton(index: selectedAnswer!) // Set border color to the selected answer color
+                // Ensure border color is set to the selected answer color
+                nextButtonBorderColor = colorForButton(index: index)
             }
         }
     }
