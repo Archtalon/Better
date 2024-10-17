@@ -31,7 +31,8 @@ struct BasicInputView: View {
 
                 // Display the current question
                 Text(currentQuestion)
-                    .fontWeight(.bold)
+                    .font(.largeTitle)
+                    //.fontWeight(.bold)
                     .foregroundColor(Color("MyBlack")) // Default text color MyBlack
                     .padding()
 
@@ -46,7 +47,7 @@ struct BasicInputView: View {
                                     handleAnswerSelection(index: index)
                                 }) {
                                     Text(possibleAnswers[index])
-                                        .fontWeight(.bold)
+                                        //.fontWeight(.bold)
                                         .foregroundColor(selectedAnswer == index ? colorForButton(index: index) : Color("MyBlack")) // Set color after selection
                                         .padding()
                                         .frame(maxWidth: .infinity)
@@ -100,7 +101,7 @@ struct BasicInputView: View {
                     }) {
                         NavigationLink(destination: TimeInputView()) {
                             Text("Next")
-                                .fontWeight(.bold)
+                                //.fontWeight(.bold)
                                 .foregroundColor(selectedAnswer != nil ? colorForButton(index: selectedAnswer!) : Color("MyBlack")) // Retain color of selected answer
                                 .padding(10) // Adjust padding to make the button smaller
                                 .background(Color("MyWhite")) // Fixed background color

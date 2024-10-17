@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB3691DE2CBDAA9900CBA589 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3691DD2CBDAA9900CBA589 /* CalendarView.swift */; };
+		BB3691E02CBDACE800CBA589 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3691DF2CBDACE800CBA589 /* TimelineView.swift */; };
 		BB58AA702CB80D590003F48E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB58AA6F2CB80D590003F48E /* OnboardingView.swift */; };
 		BBB6D8E82CBAD237008BDE9E /* TimeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB6D8E72CBAD237008BDE9E /* TimeInputView.swift */; };
 		BBB9E0102CB5CD64004E4CF7 /* BetterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB9E00F2CB5CD64004E4CF7 /* BetterApp.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB3691DD2CBDAA9900CBA589 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		BB3691DF2CBDACE800CBA589 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		BB58AA6F2CB80D590003F48E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		BBB6D8E72CBAD237008BDE9E /* TimeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInputView.swift; sourceTree = "<group>"; };
 		BBB9E00C2CB5CD64004E4CF7 /* Better.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Better.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +95,8 @@
 				BB58AA6F2CB80D590003F48E /* OnboardingView.swift */,
 				BBF023FC2CB96A03009540A8 /* BasicInputView.swift */,
 				BBB6D8E72CBAD237008BDE9E /* TimeInputView.swift */,
+				BB3691DD2CBDAA9900CBA589 /* CalendarView.swift */,
+				BB3691DF2CBDACE800CBA589 /* TimelineView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,11 +172,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBB6D8E82CBAD237008BDE9E /* TimeInputView.swift in Sources */,
+				BB3691DE2CBDAA9900CBA589 /* CalendarView.swift in Sources */,
 				BB58AA702CB80D590003F48E /* OnboardingView.swift in Sources */,
 				BBF023FD2CB96A03009540A8 /* BasicInputView.swift in Sources */,
 				BBB9E0122CB5CD64004E4CF7 /* LogoView.swift in Sources */,
 				BBF023FA2CB90CC4009540A8 /* TopBarView.swift in Sources */,
 				BBB9E0102CB5CD64004E4CF7 /* BetterApp.swift in Sources */,
+				BB3691E02CBDACE800CBA589 /* TimelineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

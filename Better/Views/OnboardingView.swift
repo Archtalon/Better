@@ -26,7 +26,7 @@ struct OnboardingView: View {
                         Some of us may need to be better professionals, better artists, better athletes, better friends and partners, or a combination of all of the above. Let’s explore together through a series of questions, how much time is available on each one of your days, what are your targets and what we can achieve with it.
                         
                         """)
-                        .fontWeight(.bold)
+                        //.fontWeight(.bold)
                         .foregroundColor(Color("MyBlack"))
                         .padding(.top, 90)
                         .padding(.horizontal, 20)
@@ -38,7 +38,7 @@ struct OnboardingView: View {
                         
                         In the end, you will have a complete timeline for your next weeks, months etc.
                         """)
-                        .fontWeight(.bold)
+                        //.fontWeight(.bold)
                         .foregroundColor(Color("MyWhite"))
                         .padding(.horizontal, 20)
                     }

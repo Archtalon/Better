@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TimeInputView: View {
-    @State private var currentQuestion = "How much time do you have available each day?"
+    @State private var currentQuestion = "How much time do you have available?"
     @State private var possibleAnswers = ["All day long.", "I can provide specific information for each day.", "One hour for each day.", "I don't really know."]
     
     @State private var selectedAnswer: Int? = nil // Track the selected answer
@@ -31,7 +31,8 @@ struct TimeInputView: View {
 
                 // Display the current question
                 Text(currentQuestion)
-                    .fontWeight(.bold)
+                    .font(.largeTitle)
+                    //.fontWeight(.bold)
                     .foregroundColor(Color("MyBlack")) // Default text color MyBlack
                     .multilineTextAlignment(.center)
                     .padding()
@@ -47,7 +48,7 @@ struct TimeInputView: View {
                                     handleAnswerSelection(index: index)
                                 }) {
                                     Text(possibleAnswers[index])
-                                        .fontWeight(.bold)
+                                        //.fontWeight(.bold)
                                         .font(.system(size: (index == 1 ? 10 : 17)))
                                         .foregroundColor(selectedAnswer == index ? colorForButton(index: index) : Color("MyBlack")) // Set color after selection
                                         .padding()
@@ -101,16 +102,18 @@ struct TimeInputView: View {
                         // Handle navigation or action for the Next button here...
                     }
                 }) {
-                    Text("Next")
-                        .fontWeight(.bold)
-                        .foregroundColor(selectedAnswer != nil ? colorForButton(index: selectedAnswer!) : Color("MyBlack")) // Retain color of selected answer
-                        .padding(10) // Adjust padding to make the button smaller
-                        .background(Color("MyWhite")) // Fixed background color
-                        .cornerRadius(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(flashNextButton ? (selectedAnswer != nil ? colorForButton(index: selectedAnswer!) : Color.clear) : nextButtonBorderColor, lineWidth: 2)
-                        ) // Border flash effect
+                    NavigationLink(destination: CalendarView()) {
+                        Text("Next")
+                            //.fontWeight(.bold)
+                            .foregroundColor(selectedAnswer != nil ? colorForButton(index: selectedAnswer!) : Color("MyBlack")) // Retain color of selected answer
+                            .padding(10) // Adjust padding to make the button smaller
+                            .background(Color("MyWhite")) // Fixed background color
+                            .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(flashNextButton ? (selectedAnswer != nil ? colorForButton(index: selectedAnswer!) : Color.clear) : nextButtonBorderColor, lineWidth: 2)
+                            ) // Border flash effect
+                    }
                 }
                 .padding(.horizontal)
                 .padding(.bottom) // Add bottom padding to separate from logos
