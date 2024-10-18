@@ -2,89 +2,104 @@ import SwiftUI
 
 struct TimelineView: View {
     var selectedDate: Date
-    @State private var startY: CGFloat = 0
-    @State private var endY: CGFloat = 100
-    @State private var selectedStartHour = 0
-    @State private var selectedEndHour = 1
     
-    let hoursInDay = 24
+    // Start and end hours for the time range (in 24-hour format)
+    @State private var startHour: Double = 9.0
+    @State private var endHour: Double = 17.0
+    
+    private let timeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter
+    }()
     
     var body: some View {
-        GeometryReader { geometry in
+        VStack {
+            Text("Selected Date: \(selectedDate, formatter: dateFormatter)")
+                .font(.title2)
+                .padding()
+            
+            Text("Select a time range for your activity:")
+                .font(.headline)
+                .padding(.bottom, 20)
+            
+            // Display the selected time range
+            HStack {
+                Text("From: \(formatHour(startHour))")
+                Spacer()
+                Text("To: \(formatHour(endHour))")
+            }
+            .padding(.horizontal)
+            
+            // Slider for selecting start and end times
             VStack {
-                Text("Timeline for \(formattedDate(selectedDate))")
-                    .font(.largeTitle)
-                    .padding()
-                
-                ZStack {
-                    // The vertical timeline line
-                    Rectangle()
-                        .fill(Color.gray)
-                        .frame(width: 4)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                        .padding(.horizontal)
-                    
-                    // Time slots along the line
-                    VStack {
-                        ForEach(0..<hoursInDay, id: \.self) { hour in
-                            Text("\(hour):00")
-                                .frame(height: geometry.size.height / CGFloat(hoursInDay))
+                Slider(
+                    value: $startHour,
+                    in: 0...23,
+                    step: 1,
+                    onEditingChanged: { _ in
+                        // Ensure startHour does not exceed endHour
+                        if startHour > endHour {
+                            endHour = startHour
                         }
                     }
-                    .position(x: geometry.size.width / 2 - 30, y: geometry.size.height / 2)
-                    
-                    // Draggable selection overlay
-                    Rectangle()
-                        .fill(Color.blue.opacity(0.3))
-                        .frame(width: geometry.size.width, height: endY - startY)
-                        .position(x: geometry.size.width / 2, y: (startY + endY) / 2)
-                        .gesture(
-                            DragGesture(minimumDistance: 0)
-                                .onChanged { value in
-                                    let dragPosition = value.location.y
-                                    
-                                    // Ensure the drag stays within the bounds of the screen
-                                    let minY: CGFloat = 0
-                                    let maxY: CGFloat = geometry.size.height
-                                    
-                                    if dragPosition < startY {
-                                        startY = max(minY, dragPosition)
-                                    } else {
-                                        endY = min(maxY, dragPosition)
-                                    }
-                                    
-                                    // Update selected hours based on drag position
-                                    selectedStartHour = Int((startY / maxY) * CGFloat(hoursInDay))
-                                    selectedEndHour = Int((endY / maxY) * CGFloat(hoursInDay))
-                                }
-                        )
+                ) {
+                    Text("Start Hour")
                 }
+                .accentColor(.blue)
+                .padding(.horizontal)
                 
-                Spacer()
-                
-                Text("Selected time: \(selectedStartHour):00 to \(selectedEndHour):00")
-                    .font(.headline)
-                
-                Button(action: {
-                    // Handle time selection confirmation
-                    print("Selected time range: \(selectedStartHour):00 to \(selectedEndHour):00")
-                }) {
-                    Text("Confirm")
-                        .font(.headline)
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color.green)
-                        .cornerRadius(8)
+                Slider(
+                    value: $endHour,
+                    in: 0...23,
+                    step: 1,
+                    onEditingChanged: { _ in
+                        // Ensure endHour is not less than startHour
+                        if endHour < startHour {
+                            startHour = endHour
+                        }
+                    }
+                ) {
+                    Text("End Hour")
                 }
-                .padding()
+                .accentColor(.green)
+                .padding(.horizontal)
             }
+            .padding(.bottom, 20)
+            
+            Spacer()
+            
+            Button(action: {
+                // Handle the action when the time range is selected
+                print("Activity scheduled from \(formatHour(startHour)) to \(formatHour(endHour))")
+            }) {
+                Text("Confirm Activity")
+                    .font(.headline)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
+            .padding(.bottom)
         }
+        .padding()
     }
     
-    // Helper function to format the selected date
-    private func formattedDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        return formatter.string(from: date)
+    // Helper to format hours (24-hour time to AM/PM format)
+    private func formatHour(_ hour: Double) -> String {
+        let calendar = Calendar.current
+        let date = calendar.date(bySettingHour: Int(hour), minute: 0, second: 0, of: selectedDate)!
+        return timeFormatter.string(from: date)
     }
+}
+
+// Helper to format the date for display
+private let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .long
+    return formatter
+}()
+
+#Preview {
+    TimelineView(selectedDate: Date())
 }
