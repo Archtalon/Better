@@ -31,46 +31,86 @@ struct TimelineView: View {
             }
             .padding(.horizontal)
             
-            // Slider for selecting start and end times
-            VStack {
-                Slider(
-                    value: $startHour,
-                    in: 0...23,
-                    step: 1,
-                    onEditingChanged: { _ in
-                        // Ensure startHour does not exceed endHour
-                        if startHour > endHour {
-                            endHour = startHour
+            // HStack to hold sliders and the center line
+            HStack(alignment: .bottom) {
+                // Start Time Slider (Vertical)
+                VStack {
+                    Text("From")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+
+                    Slider(
+                        value: $startHour,
+                        in: 0...23,
+                        step: 1,
+                        onEditingChanged: { _ in
+                            if startHour > endHour {
+                                endHour = startHour
+                            }
                         }
-                    }
-                ) {
-                    Text("Start Hour")
+                    )
+                    .rotationEffect(.degrees(-90)) // Rotate slider to vertical
+                    .frame(height: 300) // Adjust the height for a larger range
+                    .padding(.horizontal)
+                    
+                    Text(formatHour(startHour))
+                        .font(.caption)
+                        .padding(.top, 8)
                 }
-                .accentColor(.blue)
-                .padding(.horizontal)
                 
-                Slider(
-                    value: $endHour,
-                    in: 0...23,
-                    step: 1,
-                    onEditingChanged: { _ in
-                        // Ensure endHour is not less than startHour
-                        if endHour < startHour {
-                            startHour = endHour
+                // Center Line with Hour Labels
+                VStack {
+                    ForEach(0..<24, id: \.self) { hour in
+                        if hour % 3 == 0 {  // Show hour labels at every 3-hour interval
+                            HStack {
+                                Text("\(hour):00")
+                                    .font(.footnote)
+                                    .frame(width: 50, alignment: .trailing) // Align text to the right
+                                    .foregroundColor(.gray)
+                                Spacer()
+                            }
+                        } else {
+                            Spacer()
                         }
                     }
-                ) {
-                    Text("End Hour")
                 }
-                .accentColor(.green)
-                .padding(.horizontal)
+                .frame(width: 60)  // Width for the center line
+                .overlay(
+                    Rectangle()
+                        .frame(width: 2) // Width of the line
+                        .foregroundColor(.gray)
+                )
+                
+                // End Time Slider (Vertical)
+                VStack {
+                    Text("To")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+
+                    Slider(
+                        value: $endHour,
+                        in: 0...23,
+                        step: 1,
+                        onEditingChanged: { _ in
+                            if endHour < startHour {
+                                startHour = endHour
+                            }
+                        }
+                    )
+                    .rotationEffect(.degrees(-90)) // Rotate slider to vertical
+                    .frame(height: 300) // Adjust the height for a larger range
+                    .padding(.horizontal)
+                    
+                    Text(formatHour(endHour))
+                        .font(.caption)
+                        .padding(.top, 8)
+                }
             }
             .padding(.bottom, 20)
             
             Spacer()
             
             Button(action: {
-                // Handle the action when the time range is selected
                 print("Activity scheduled from \(formatHour(startHour)) to \(formatHour(endHour))")
             }) {
                 Text("Confirm Activity")
